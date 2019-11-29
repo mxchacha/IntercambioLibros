@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+<div id="wrapper">
+	<header th:replace="layout :: frgHeader"></header>
+	<div id="content-wrapper" class="d-flex flex-column">
+		<!-- Begin Page Content -->
+		<div class="container">
+			<div class="container-fluid">			
+				<br />
+		<div class="card col-md-12">
+			<div class="card-body">
+				<div class="form-group row">
+					<div class="content col-sm-1">
+						<i class="far fa-plus-square fa-2x"></i>
+					</div>
+					<h3 class="card-title col-sm-10" th:text="${title}"></h3>					
+				</div>
+				<hr />
+				
+				<form th:action="@{/usuario/save}" th:object="${usuario}" method="post">
+										
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-info-circle"></i>
+							<label class="h5 col-form-label">&nbsp;Nombre:</label>						
+						</div>
+						<div class="content col-sm-6">							
+							 
+							<textarea class ="form-control"
+								th:field="*{nombre}"
+								th:errorclass="'form-control is-invalid'" >
+							</textarea>	
+								<small 
+								class="invalid-feedback"
+								th:if="${#fields.hasErrors('nombre')}"
+								th:errors="*{nombre}">
+								</small>
+					</div>
+				</div>
+					
+					<hr/>
+				
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="far fa-sticky-note"></i>
+							<label class="h5 col-form-label">&nbsp;Apellido:</label>						
+						</div>
+						<div class="content col-sm-6">
+							<textarea class="form-control" 
+								th:field="*{apellido}"
+								th:errorclass="'form-control is-invalid'"></textarea>
+								<small class="invalid-feedback"
+								th:if="${#fields.hasErrors('apellido')}"
+								th:errors="*{apellido}"
+								></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="far fa-sticky-note"></i>
+							<label class="h5 col-form-label">&nbsp;C&eacute;dula:</label>						
+						</div>
+						<div class="content col-sm-6">
+							<textarea class="form-control" 
+								th:field="*{cedula}"
+								th:errorclass="'form-control is-invalid'"></textarea>
+								
+						</div>
+					</div>
+					
+					
+					<hr />
+					<div class="form-group row">
+						<div class="col-sm-4">
+							<a class="btn btn-danger" 
+								th:href="@{/usuario/list}">
+							<i class="fas fa-minus-circle"></i>&nbsp;Cancelar</a>
+							<button class="btn btn-success" type="submit">
+								<i class="fas fa-plus-circle"></i>&nbsp;Guardar
+							</button>
+						</div>
+					</div>
+					<input type="hidden" th:field="*{idusuario}" />
+							
+				
+				</form>
+
+				
+			</div>
+		</div>
+			</div>
+			<footer th:replace="layout :: frgFooter"></footer>
+		</div>
+	</div>
+</div>
+</body>
+</html>

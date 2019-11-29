@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+<div id="wrapper">
+	<header th:replace="layout :: frgHeader"></header>
+	<div id="content-wrapper" class="d-flex flex-column">
+		<!-- Begin Page Content -->
+		<div class="container">
+			<div class="container-fluid">			
+				<br />
+		<div class="card col-md-12">
+			<div class="card-body">
+				<div class="form-group row">
+					<div class="content col-sm-1">
+						<i class="far fa-plus-square fa-2x"></i>
+					</div>
+					<h3 class="card-title col-sm-10" th:text="${tittle}"></h3>					
+				</div>
+				<hr />
+				
+				<form th:action="@{/intercambio/save}" th:object="${intercambio}" method="post">
+										
+
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="far fa-calendar-alt"></i>
+							<label class="h5 col-form-label">&nbsp;Fecha de Intercambio:</label>						
+						</div>
+						<div class="content col-sm-6">
+							<div class="form-control">
+							<input type="date"
+							data-date="" data-date-format="DD MMMM YYYY" 
+							th:field="*{fechaIntercambio}"
+							th:errorclass="'form-control is-invalid'">
+						</div>
+	
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="far fa-sticky-note"></i>
+							<label class="h5 col-form-label">&nbsp;Lugar:</label>						
+						</div>
+						<div class="content col-sm-6">
+							<textarea class="form-control" 
+								th:field="*{lugar}"
+								th:errorclass="'form-control is-invalid'"></textarea>
+								<small class="invalid-feedback"
+								th:if="${#fields.hasErrors('lugar')}"
+								th:errors="*{lugar}"
+								></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="far fa-sticky-note"></i>
+							<label class="h5 col-form-label">&nbsp;Estado:</label>						
+						</div>
+						<div class="content col-sm-6">
+							<div class="form-control"
+							>
+								<select th:field="*{estado}"
+								th:errorclass="'form-control is-invalid'">
+								  <option value="r">Realizado</option>
+								  <option value="nr">No realizado</option>
+								  <option value="p">Pendiente</option>
+								 
+								</select>
+							</div>
+								<small class="invalid-feedback"
+								th:if="${#fields.hasErrors('estado')}"
+								th:errors="*{estado}"
+								></small>
+						</div>
+					</div>
+										
+					<hr />
+					<div class="form-group row">
+						<div class="col-sm-4">
+							<a class="btn btn-danger" 
+								th:href="@{/intercambio/list}">
+							<i class="fas fa-minus-circle"></i>&nbsp;Cancelar</a>
+							<button class="btn btn-success" type="submit">
+								<i class="fas fa-plus-circle"></i>&nbsp;Guardar
+							</button>
+						</div>
+					</div>
+					<input type="hidden" th:field="*{idintercambio}" />
+							
+				
+				</form>
+				
+
+				
+			</div>
+		</div>
+			</div>
+			<footer th:replace="layout :: frgFooter"></footer>
+		</div>
+	</div>
+</div>
+</body>
+</html>
